@@ -1,0 +1,27 @@
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+            <h2>Listado de Deptos</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in lista_deptos %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{c.nombre}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

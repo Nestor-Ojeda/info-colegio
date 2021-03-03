@@ -1,0 +1,38 @@
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-12">
+            <h2>Listado de Domicilios</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>País</th>
+                            <th>Provincia</th>
+                            <th>Ciudad</th>
+                            <th>Barrio</th>
+                            <th>Calle</th>
+                            <th>Número</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in lista_domicilios %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{c.ciudad.provincia.pais.pais}}</td>
+                            <td>{{c.ciudad.provincia.nombre}}</td>
+                            <td>{{c.ciudad.nom_ciudad}}</td>
+                            <td>{{c.barrio}}</td>
+                            <td>{{c.calle}}</td>
+                            <td>{{c.numero}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

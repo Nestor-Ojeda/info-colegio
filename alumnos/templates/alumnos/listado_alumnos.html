@@ -1,0 +1,35 @@
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-12">
+            <h2>Listado de Alumnos</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Teléfono</th>
+                            <th>Tutor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in lista_alumnos %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{c.persona.nombre}}</td>
+                            <td>{{c.persona.apellido}}</td>
+                            <td>{{c.telefono.numero}}</td>
+                            <td>{{c.tutorA.nombre}}</td>
+                            <td>{{c.tutorA.apellido}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

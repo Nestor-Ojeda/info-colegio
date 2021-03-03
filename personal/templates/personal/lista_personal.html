@@ -1,0 +1,33 @@
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-12">
+            <h2>Listado de Personal</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Teléfono</th>
+                            <th>Depto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in lista_personal %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{c.persona.nombre}}</td>
+                            <td>{{c.persona.apellido}}</td>
+                            <td>{{c.telefono.numero}}</td>
+                            <td>{{c.depto.nombre}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
