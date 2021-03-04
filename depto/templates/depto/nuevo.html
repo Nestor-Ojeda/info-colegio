@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    Nuevo dpto
+{% endblock %}
+{% block contenido%}
+    crear depto
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            {{ form.nombre.label }}
+            {{ form.nombre }}
+            {{ form.nombre.errors }}
+        </div>
+        <div>
+            {{form.errors}}
+        </div>
+        <input type="submit" value="CREAR">
+    </form>
+{% endblock %}
