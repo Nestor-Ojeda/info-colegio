@@ -1,25 +1,46 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout as do_logout
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 
-def iniciar_sesion(request):
-    siguiente = request.GET.get("next","depto:saludo")
+def bienvenido(request):
+    if request.user.is_authenticated:
+        return render(request, "perfil/bienvenido.html")
+    return redirect('/login')
+
+def register(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(data=request.POST)
+        if form.is_valid():
+
+            user = form.save()
+ 
+            if user is not None:
+                do_login(request, user)
+                return redirect('/register')
+    return render(request, "perfil/register.html", {'form': form})
+
+
+def login(request):
     form = AuthenticationForm()
-
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(username=username,password=password)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(username=username, password=password)
+
             if user is not None:
-                login(request, user)
-                return redirect(siguiente)
+                do_login(request, user)
+                return redirect('/')
 
-    template = "perfil/login.html"
-    contexto = {"form":form}
-    return render(request, template, contexto)
+    return render(request, "perfil/login.html", {'form': form})
 
-def cerrar_sesion(request):
-    logout(request)
-    return redirect("depto:saludo")
+
+
+def logout(request):
+    do_logout(request)
+    return redirect('/')
